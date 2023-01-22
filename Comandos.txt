@@ -4,10 +4,14 @@ docker-compose up -d  | Levantar los contenedores
 
 Laravel:
 EN docker llamar siempre a :
-docker-compose exec app php artisan migrate:fresh --seed
+docker-compose exec app
 
 php artisan make:model Customer --all
 php artisan make:model Invoice --all
 
 php artisan migrate:fresh --seed
+
+php artisan make:resource V1\CustomerResource
+php artisan make:resource V1\CustomerCollection
+
 
