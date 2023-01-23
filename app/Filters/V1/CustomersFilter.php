@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Services\V1;
+namespace App\Filters\V1;
 
+use App\Filters\ApiFilter;
 use Illuminate\Http\Request;
 
-class CustomerQuery{
+class CustomersFilter extends ApiFilter {
 
 //http://localhost:8000/api/v1/customers?postalCode[gt]=60000-0000
 //http://localhost:8000/api/v1/customers?postalCode[gt]=60000-0000&type[eq]=B&state[eq]=delaware
@@ -16,7 +17,6 @@ class CustomerQuery{
         'email'=>['eq'],
         'address'=>['eq'],
         'city'=>['eq'],
-        'name'=>['eq'],
         'state'=>['eq'],
         'postalCode'=>['eq',"gt","lt"]
     ];
@@ -34,31 +34,7 @@ class CustomerQuery{
     ];
 
 
-    public function transform(Request $request){
-
-        $eloQuery = [];
-
-        foreach($this->safeParms as $parm => $operators){
-            $query = $request->query($parm);
-
-            if(!isset($query)){
-                continue;
-            }
-
-            $column = $this->columnMap[$parm] ?? $parm;
-
-            foreach($operators as $operator){
-                if(isset($query[$operator])){
-                    $eloQuery[] = [$column,$this->operatorMap[$operator],$query[$operator]];
-                }
-            }
-
-        }
-
-        return $eloQuery;
-    }
-
-
+  
 
 
 }
