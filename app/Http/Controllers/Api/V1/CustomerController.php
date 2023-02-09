@@ -12,6 +12,7 @@ use App\Http\Resources\V1\CustomerCollection;
 use Illuminate\Http\Request;
 
 
+
 class CustomerController extends Controller
 {
     /**
@@ -57,6 +58,7 @@ class CustomerController extends Controller
     public function store(StoreCustomerRequest $request)
     {
         //
+        return new CustomerResource(Customer::create($request->all()));
     }
 
     /**

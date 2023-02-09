@@ -14,4 +14,4 @@ php artisan migrate:fresh --seed
 php artisan make:resource V1\CustomerResource
 php artisan make:resource V1\CustomerCollection
 
-
+php artisan make:request StoreCustomerRequest
